@@ -30,11 +30,8 @@ bool C_BaseEntity::IsDefuseKit()
 
 CCSWeaponInfo* C_BaseCombatWeapon::GetCSWeaponData()
 {
-    static auto fnGetWpnData
-        = reinterpret_cast<CCSWeaponInfo*(__thiscall*)(void*)>(
-            Utils::PatternScan("client.dll", "55 8B EC 81 EC ? ? ? ? 53 8B D9 56 57 8D 8B")
-            );
-    return fnGetWpnData(this);
+	typedef CCSWeaponInfo*(__thiscall* OriginalFn)(void*);
+	return CallVFunction<OriginalFn>(this, 446)(this);
 }
 
 bool C_BaseCombatWeapon::HasBullets()
@@ -97,17 +94,17 @@ bool C_BaseCombatWeapon::IsReloading()
 
 float C_BaseCombatWeapon::GetInaccuracy()
 {
-    return CallVFunction<float(__thiscall*)(void*)>(this, 483)(this);
+    return CallVFunction<float(__thiscall*)(void*)>(this, 469)(this);
 }
 
 float C_BaseCombatWeapon::GetSpread()
 {
-    return CallVFunction<float(__thiscall*)(void*)>(this, 484)(this);
+    return CallVFunction<float(__thiscall*)(void*)>(this, 439)(this);
 }
 
 void C_BaseCombatWeapon::UpdateAccuracyPenalty()
 {
-    CallVFunction<void(__thiscall*)(void*)>(this, 485)(this);
+    CallVFunction<void(__thiscall*)(void*)>(this, 470)(this);
 }
 
 CUserCmd*& C_BasePlayer::m_pCurrentCommand()
