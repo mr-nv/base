@@ -46,6 +46,9 @@
 #define TICK_INTERVAL			( g_pGlobals->interval_per_tick )
 #define TIME_TO_TICKS( dt )		( (int)( 0.5f + (float)(dt) / TICK_INTERVAL ) )
 #define TICKS_TO_TIME( t )		( TICK_INTERVAL *( t ) )
+#define FLOW_OUTGOING	0		
+#define FLOW_INCOMING	1
+#define MAX_FLOWS		2		// in & out
 
 struct IDirect3DDevice9;
 
